@@ -16,4 +16,10 @@ app.get('/api/hamburger/:id', (req, res) => {
     .then(hamburger => res.send(hamburger));
 });
 
+app.put('/api/hamburger/:id', (req, res) => {
+  Hamburger
+    .update(req.params.id, req.body)
+    .then(hamburger => res.send(hamburger));
+});
+
 module.exports = app ;

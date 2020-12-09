@@ -32,5 +32,21 @@ module.exports = class Hamburger {
       if(!rows[0]) throw new Error(`No burgers like ${id}, Pal`);
       return new Hamburger(rows[0]);
     }
+
+    static async update(id, { name, description, toppings }) {
+      const { rows } = await pool.query(
+        `UPDATE hamburger
+            SET name=$1,
+            description=$2,
+            toppings=$3
+            WHERE id=$4
+            RETURNING *`,
+        [name, description, toppings, id]
+            
+      );
+
+      if(!rows[0]) throw new Error(`No ${id} for you, Pal`);
+      return new Hamburger(rows[0]);
+    }
 };
 
