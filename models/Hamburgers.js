@@ -48,5 +48,15 @@ module.exports = class Hamburger {
       if(!rows[0]) throw new Error(`No ${id} for you, Pal`);
       return new Hamburger(rows[0]);
     }
+
+
+    static async delete(id) {
+      const { rows } = await pool.query(
+        'DELETE FROM hamburger WHERE id=$1 RETURNING *',
+        [id]
+      );
+
+      return new Hamburger(rows[0]);
+    }
 };
 

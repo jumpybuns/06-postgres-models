@@ -22,4 +22,10 @@ app.put('/api/hamburger/:id', (req, res) => {
     .then(hamburger => res.send(hamburger));
 });
 
+app.delete('/api/hamburger/:id', (req, res) => {
+  Hamburger
+    .delete(req.params.id)
+    .then(hamburger => res.send(hamburger));
+});
+
 module.exports = app ;
