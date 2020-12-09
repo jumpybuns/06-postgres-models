@@ -22,6 +22,14 @@ module.exports = class Hamburger {
       );
       return new Hamburger(rows[0]);
     }
+    
+    static async find() {
+      const { rows } = await pool.query(
+        'SELECT * FROM hamburger',
+      );
+      return rows.map(row => new Hamburger(row));
+
+    }
 
     static async findById(id) {
       const { rows } = await pool.query(

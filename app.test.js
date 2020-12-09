@@ -29,6 +29,19 @@ describe('app tests', () => {
     });
   });
 
+  it('GET all hamburgers from the menu', async() => {
+
+    const hamburger = await Hamburger.insert({ 
+      name: 'Whopper',
+      description: 'greasy af',
+      toppings: 'onions]' });
+
+    const response = await request(app)
+      .get('/api/hamburger');
+      
+    expect(response.body).toEqual([hamburger]);
+  });
+
   it('GETS a hamburger from the menu by id', async() => {
     const hamburger = await Hamburger.insert({ 
       name: 'Whopper',

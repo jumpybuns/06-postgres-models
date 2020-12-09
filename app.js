@@ -10,6 +10,12 @@ app.post('/api/hamburger', (req, res) => {
     .then(hamburger => res.send(hamburger));
 });
 
+app.get('/api/hamburger', (req, res) => {
+  Hamburger
+    .find()
+    .then(hamburger => res.send(hamburger));
+});
+
 app.get('/api/hamburger/:id', (req, res) => {
   Hamburger
     .findById(req.params.id)
